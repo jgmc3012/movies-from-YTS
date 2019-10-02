@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react'
 import MovieCard from './MovieCard'
+import MovieDetails from './MovieDetails'
 
 
 class ListMovies extends React.Component{
@@ -8,51 +9,57 @@ class ListMovies extends React.Component{
         super(props)
         this.state = {
             sliceLength: 4, //Indica el numero de peliculas que se mostraran en la pantalla
-            slice: 1
-        }
-        this.state = {
-            ...this.state,
-            init: 0,
-            end: this.state.sliceLength 
+            slice: 1,
+            movieSelect: {}
         }
 
         this.backSlice = this.backSlice.bind(this)
         this.nextSlice = this.nextSlice.bind(this)
+        this.seeMoreDetails = this.seeMoreDetails.bind(this)
+
 
     }
 
     backSlice() {
-        this.state.slice--
         this.setState({
-            init: (this.state.slice - 1) * this.state.sliceLength,
-            end: (this.state.slice) * this.state.sliceLength 
+            slice: this.state.slice - 1 
         })
     }
 
 
     nextSlice() {
-        this.state.slice++
         this.setState({
-            init: (this.state.slice - 1) * this.state.sliceLength,
-            end: (this.state.slice) * this.state.sliceLength 
+            slice: this.state.slice + 1
         })
     }
 
+    seeMoreDetails(e,movie) {
+        console.log(movie)
+    }
+
     render() {
+        let SliceInit = (this.state.slice - 1) * this.state.sliceLength
+        let SliceEnd = (this.state.slice) * this.state.sliceLength 
+
         return (
             <Fragment>
                 <div className='container mb-4'>
                     <div className="text-dark">
                         <h2>{this.props.genre}</h2>
                     </div>
+                    <MovieDetails
+                        movie = { this.state.movieSelect }
+                    />
                     <div className='carousel slice mr-3 ml-3'>
                         <div className='carousel-inner row'>
-                            {this.props.movies.slice(this.state.init, this.state.end).map( (movie) => ( 
+                            {this.props.movies.slice(SliceInit, SliceEnd).map( (movie) => ( 
                                 <MovieCard
-                                    img= {movie.medium_cover_image}
-                                    title= {movie.title}
-                                    data= {movie}
-                                /> 
+                                    key = {movie.id}
+                                    movie = {movie}
+                                    showMovie = {
+                                                e => this.seeMoreDetails(e,movie)
+                                            }
+                                />
                             ))}
                         </div>
         

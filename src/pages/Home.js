@@ -5,8 +5,9 @@ import NavBar from '../components/NavBar'
 const Home = ({moviesGenre, dataMovies}) => (
     <React.Fragment>
         <NavBar/>
-        {moviesGenre.map( (movieGenre) =>(
-            <ListMovies 
+        {moviesGenre.map( (movieGenre, index) =>(
+            <ListMovies
+            key = {index}
             genre = {movieGenre}
             movies = {dataMovies[movieGenre] || []}
             />

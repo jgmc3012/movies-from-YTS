@@ -31,18 +31,20 @@ class HomeContainer extends React.Component {
                     `${config.API_URL}${config.LIST_MOVIES_ENDPOINT}genre=${movieGenre}`)
                 .then( response => response.json() )
                 .then( response => { 
-                    this.state.movies[movieGenre] = response.data.movies
+                    const movies = this.state.movies
+                    movies[movieGenre] = response.data.movies
                     this.setState({
                         movies: {
-                            ...this.state.movies
+                            ...movies                            
                         }
                     })
                 })    
             } catch (error) {
-                this.state.movies[movieGenre] = []
+                const movies = this.state.movies
+                movies[movieGenre] = []
                 this.setState({
                     movies: {
-                        ...this.state.movies
+                        ...movies
                     }
                 })
             console.log('Error en el fetch al buscar las peliculas del genero: ',movieGenre,'->', error)
@@ -53,7 +55,6 @@ class HomeContainer extends React.Component {
     } 
 
     render() {
-        console.log(this.state.dataMovies)
         return(
             <Home
                 moviesGenre={this.state.moviesGenre}
