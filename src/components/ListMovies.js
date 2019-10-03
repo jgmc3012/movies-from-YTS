@@ -7,16 +7,17 @@ class ListMovies extends React.Component{
 
     constructor(props) {
         super(props)
+
         this.state = {
-            sliceLength: 4, //Indica el numero de peliculas que se mostraran en la pantalla
+            sliceLength: Math.floor(window.innerWidth / this.props.moviesWidth), //Indica el numero de peliculas que se mostraran en la fila
             slice: 1,
-            movieSelect: {}
+            movieSelect: {},
+            movieActive: false
         }
 
         this.backSlice = this.backSlice.bind(this)
         this.nextSlice = this.nextSlice.bind(this)
         this.seeMoreDetails = this.seeMoreDetails.bind(this)
-
 
     }
 
@@ -34,7 +35,10 @@ class ListMovies extends React.Component{
     }
 
     seeMoreDetails(e,movie) {
-        console.log(movie)
+        this.setState({
+            movieActive: true,
+            movieSelect: movie
+        })
     }
 
     render() {
@@ -43,15 +47,24 @@ class ListMovies extends React.Component{
 
         return (
             <Fragment>
-                <div className='container mb-4'>
-                    <div className="text-dark">
-                        <h2>{this.props.genre}</h2>
+                <MovieDetails
+                    movie = { this.state.movieSelect }
+                    visible = {this.state.movieActive}
+                />
+                
+                <div className='mb-4'>
+                    <div className='clearfix'>                        
+                        <div className="float-left">
+                            <button className="btn btn-primary" onClick={this.backSlice}>Atras</button>
+                        </div>
+                        <div className="float-right">
+                            <button className="btn btn-primary" onClick={this.nextSlice}>Siguiente</button>
+                        </div>
+                        <div className="text-dark text-center">
+                            <h2>{this.props.genre}</h2>
+                        </div>
                     </div>
-                    <MovieDetails
-                        movie = { this.state.movieSelect }
-                    />
-                    <div className='carousel slice mr-3 ml-3'>
-                        <div className='carousel-inner row'>
+                    <div className='mr-3 ml-3 row bg-dark'>
                             {this.props.movies.slice(SliceInit, SliceEnd).map( (movie) => ( 
                                 <MovieCard
                                     key = {movie.id}
@@ -61,14 +74,6 @@ class ListMovies extends React.Component{
                                             }
                                 />
                             ))}
-                        </div>
-        
-                        <div className="carousel-control-prev">
-                            <button className="btn btn-primary" onClick={this.backSlice}>Atras</button>
-                        </div>
-                        <div className="carousel-control-next">
-                            <button className="btn btn-primary" onClick={this.nextSlice}>Adelante</button>
-                        </div>
                     </div>    
                 </div>
             </Fragment>

@@ -19,7 +19,7 @@ class HomeContainer extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getDataMovies()
     }
 
@@ -38,7 +38,9 @@ class HomeContainer extends React.Component {
                             ...movies                            
                         }
                     })
-                })    
+                })
+                .catch( error => console.log(`Error al traer la data de las peliculas de ${movieGenre}`))
+                
             } catch (error) {
                 const movies = this.state.movies
                 movies[movieGenre] = []
@@ -47,7 +49,6 @@ class HomeContainer extends React.Component {
                         ...movies
                     }
                 })
-            console.log('Error en el fetch al buscar las peliculas del genero: ',movieGenre,'->', error)
             }
         }
 

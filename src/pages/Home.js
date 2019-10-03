@@ -10,6 +10,7 @@ const Home = ({moviesGenre, dataMovies}) => (
             key = {index}
             genre = {movieGenre}
             movies = {dataMovies[movieGenre] || []}
+            moviesWidth = {230}
             />
         ))}
     </React.Fragment>

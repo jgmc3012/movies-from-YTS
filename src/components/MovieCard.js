@@ -6,10 +6,9 @@ class MovieCard extends React.Component{
         const { medium_cover_image, title } = this.props.movie
         return (
         <div
-            className="card col-3" 
             onClick={ this.props.showMovie }
         >
-            <img src={medium_cover_image} alt={title} className="card-img-top"/>
+            <img src={medium_cover_image} alt={title} className="img-thumbnail"/>
             <div className="countainer">
                 <p>{title}</p>
             </div>
