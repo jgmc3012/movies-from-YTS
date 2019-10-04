@@ -17,42 +17,50 @@ class HomeContainer extends React.Component {
                 'crime'
             ]                   
         }
+        this.getListMovies = this.getListMovies.bind(this)
     }
 
     componentDidMount() {
         this.getDataMovies()
     }
 
-    getDataMovies() {
-
-        const getListMovies = (movieGenre) => {
-            try {
-                fetch(
-                    `${config.API_URL}${config.LIST_MOVIES_ENDPOINT}genre=${movieGenre}`)
-                .then( response => response.json() )
-                .then( response => { 
-                    const movies = this.state.movies
-                    movies[movieGenre] = response.data.movies
-                    this.setState({
-                        movies: {
-                            ...movies                            
-                        }
-                    })
-                })
-                .catch( error => console.log(`Error al traer la data de las peliculas de ${movieGenre}`))
-                
-            } catch (error) {
+    getListMovies(movieGenre, page = 1) {
+        const URL = `${config.API_URL}${config.LIST_MOVIES_ENDPOINT}genre=${movieGenre}&page=${page}`
+        console.log(`${movieGenre} page: ${page}`)
+        try {
+            fetch(URL)
+            .then( response => response.json() )
+            .then( response => { 
                 const movies = this.state.movies
-                movies[movieGenre] = []
+                if (movies[movieGenre] === undefined) {
+                    movies[movieGenre] = response.data.movies
+                } else {
+                    movies[movieGenre].concat(response.data.movies) 
+                }
                 this.setState({
                     movies: {
-                        ...movies
+                        ...movies                           
                     }
                 })
+                console.log(movies[movieGenre])
+            })
+            .catch( error => console.log(`Error al traer la data de las peliculas de ${movieGenre}. Error:`, error))
+            
+        } catch (error) {
+            const movies = this.state.movies
+            if (movies[movieGenre] === undefined) {
+                movies[movieGenre] = []
             }
+            this.setState({
+                movies: {
+                    ...movies
+                }
+            })
         }
+    }
 
-        this.state.moviesGenre.map( (movieGenre) => getListMovies(movieGenre) )
+    getDataMovies() {
+        this.state.moviesGenre.map( (movieGenre) => this.getListMovies(movieGenre) )
     } 
 
     render() {
@@ -60,6 +68,7 @@ class HomeContainer extends React.Component {
             <Home
                 moviesGenre={this.state.moviesGenre}
                 dataMovies={this.state.movies}
+                getMoreMovies={this.getListMovies}
             />
         )
     }

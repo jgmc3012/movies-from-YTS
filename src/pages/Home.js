@@ -1,16 +1,18 @@
 import React from 'react'
-import ListMovies from '../components/ListMovies'
+import CarouselMovies from '../components/CarouselMovies'
 import NavBar from '../components/NavBar'
 
-const Home = ({moviesGenre, dataMovies}) => (
+const Home = ({moviesGenre, dataMovies, getMoreMovies}) => (
     <React.Fragment>
         <NavBar/>
         {moviesGenre.map( (movieGenre, index) =>(
-            <ListMovies
+            <CarouselMovies
             key = {index}
             genre = {movieGenre}
             movies = {dataMovies[movieGenre] || []}
             moviesWidth = {230}
+            selectedList = {false}
+            getMoreMovies = {getMoreMovies}
             />
         ))}
     </React.Fragment>
