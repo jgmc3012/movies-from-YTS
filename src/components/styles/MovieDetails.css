@@ -31,9 +31,10 @@
 }
 
 .description {
-  background-color: hsl(0,0%,80%);
-  border-radius: 2em;
+  background-color: hsl(0,0%,0%, 0.6);
+  border-radius: 1em;
   padding: 1em;
+  color: white;
   margin: 0 1em 1em;
 }
 
@@ -50,7 +51,8 @@
 }
 
 .btn-back {
-  background-color: hsl(0,0%,0%,0.6);
+  background-color: hsl(0,60%,50%,0.8);
+  box-shadow: 0 0 0.4em #666;
   line-height:2.6em;
   padding-left: 1em;
   padding-right: 1em;

@@ -40,11 +40,13 @@ class MovieDetails extends React.Component {
                         </div>
                     </div>
 
-                    <div className='video d-flex'>
-                        <Iframe 
-                            className='video-content'
-                            url={`https://www.youtube.com/embed/${movie.yt_trailer_code}`}
-                        ></Iframe>
+                    <div className='video-container bg-black'>
+                        <div className='video'>
+                            <Iframe 
+                                className='video-content'
+                                url={`https://www.youtube.com/embed/${movie.yt_trailer_code}`}
+                            ></Iframe>
+                        </div>
                     </div>
                 
                     <div className="datos">                        
