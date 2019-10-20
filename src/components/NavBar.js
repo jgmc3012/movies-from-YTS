@@ -5,13 +5,17 @@ import './styles/NavBar.css'
 
 const NavBar =  (props) => (
 <Fragment>
-    <nav className="navbar navbar-dark">
-        <h1 className="navbar-brand">Netflix from YTS</h1>
-        <form className="form-inline" method="get">
-            <SearchInput
-                idList='lista'
-            />
-        </form>
+    <nav className="navbar navbar-dark d-flex">
+        <div>
+            <h1 className="navbar-brand">Netflix from YTS</h1>
+        </div>
+        <div>
+            <form className="" method="get">
+                <SearchInput
+                    idList='lista'
+                />
+            </form>
+        </div>
     </nav>
 </Fragment>
 )

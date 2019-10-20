@@ -23,7 +23,14 @@ class MovieCard extends React.Component{
     render () {
         const { medium_cover_image, title } = this.props.movie
         return (
-                <div className='movie-card' id={this.props.id}>
+                <div className='movie-card'
+                    /* Esta propiedad actualmente solo es 
+                    utlizada para colocar un intersection observer 
+                    en las ultimas cartas(Las loader)*/
+                    id={this.props.id}
+                    onClick={() => (this.props.selectMovie(this.props.movie))}
+                    
+                >
                     <div className="movie-image">
                         <img
                         className={this.state.display_img}

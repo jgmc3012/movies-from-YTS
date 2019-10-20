@@ -1,12 +1,14 @@
 import React from 'react'
 import Home from './Home'
 import config from '../config'
+import HomeMovie from './HomeMovie'
 
 class HomeContainer extends React.Component {
     
     constructor(props) {
         super(props)
         this.state = {
+            selectedMovie: null,
             movies: {},
             moviesGenre: [
                 'action',
@@ -18,6 +20,8 @@ class HomeContainer extends React.Component {
             ]                   
         }
         this.getListMovies = this.getListMovies.bind(this)
+        this.selectMovie = this.selectMovie.bind(this)
+        this.returnHome = this.returnHome.bind(this)
     }
 
     componentDidMount() {
@@ -68,12 +72,45 @@ class HomeContainer extends React.Component {
         this.state.moviesGenre.map( (movieGenre) => this.getListMovies(movieGenre) )
     } 
 
+    /**
+     * Este metodo tiene como funcion obtener los datos de la pelicula seleccionada
+     * en cualquiera de los carruseles  se peliculas y pasarle dichos datos la pagina
+     * de "Movie"
+     * @param {*} movie 
+     */
+    selectMovie(movie) {
+        this.setState({
+            selectedMovie: movie
+        })
+    }
+
+    /**
+     * Este metodo sera asociado a un boton que nos regresara a la pantalla de Home
+     * en el caso de que estemos en HomeMovie
+     */
+    returnHome() {
+        this.setState({
+            selectedMovie: null
+        })
+    }
+
     render() {
-        return(
-            <Home
-                moviesGenre={this.state.moviesGenre}
-                dataMovies={this.state.movies}
-                getMoreMovies={this.getListMovies}
+        console.log('Datos de la pelicula: ',this.state.selectedMovie)
+        if (this.state.selectedMovie === null) {
+            return(
+                <Home
+                    selectMovie= {this.selectMovie}
+                    moviesGenre={this.state.moviesGenre}
+                    dataMovies={this.state.movies}
+                    getMoreMovies={this.getListMovies}
+                />
+            )
+        }
+        
+        return (
+            <HomeMovie
+                movie={this.state.selectedMovie}
+                returnHome={this.returnHome}
             />
         )
     }

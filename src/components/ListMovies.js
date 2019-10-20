@@ -38,7 +38,7 @@ class ListMovies extends React.Component {
 
 
     render() {
-        const {showMovie, movies, genre} = this.props
+        const {selectMovie, movies, genre} = this.props
         if (movies.length > 0) {        
             return(        
                 <div className='movie-list'>
@@ -46,7 +46,7 @@ class ListMovies extends React.Component {
                         <MovieCard
                             key = {movie.id}
                             movie = {movie}
-                            showMovie = {showMovie}
+                            selectMovie= {selectMovie}
                         />
                     ))}
                     <MovieCard

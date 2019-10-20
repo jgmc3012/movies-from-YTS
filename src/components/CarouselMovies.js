@@ -4,28 +4,7 @@ import './styles/CarouselMovies.css'
 
 
 class CarouselMovies extends React.Component{
-    
-    constructor(props) {
-        super(props)
         
-        this.state = {
-            sliceLength:2 + Math.floor(window.innerWidth / this.props.moviesWidth), //Indica el numero de peliculas que se mostraran en la fila
-            slice: 1,
-            movieSelect: {},
-            movieActive: this.props.selectedList
-        }
-        
-    }
-
-    seeMoreDetails(e,movie) {
-        this.setState({
-            movieActive: true,
-            movieSelect: movie
-        })
-    }
-    
-
-    
     render() {
         return (
             <Fragment>
@@ -38,8 +17,8 @@ class CarouselMovies extends React.Component{
                     <ListMovies
                         genre={this.props.genre}
                         movies = {this.props.movies}
-                        showMovie = {this.seeMoreDetails}
                         getMoreMovies = {this.props.getMoreMovies}
+                        selectMovie = {this.props.selectMovie}
                     />
                 </div>
             </Fragment>

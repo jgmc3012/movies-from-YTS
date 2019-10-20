@@ -2,7 +2,7 @@ import React from 'react'
 import CarouselMovies from '../components/CarouselMovies'
 import NavBar from '../components/NavBar'
 
-const Home = ({moviesGenre, dataMovies, getMoreMovies}) => (
+const Home = ({moviesGenre, dataMovies, getMoreMovies, selectMovie}) => (
     <div className='bg-dark'>
         <NavBar/>
         {moviesGenre.map( (movieGenre, index) =>(
@@ -13,6 +13,7 @@ const Home = ({moviesGenre, dataMovies, getMoreMovies}) => (
             moviesWidth = {230}
             selectedList = {false}
             getMoreMovies = {getMoreMovies}
+            selectMovie = {selectMovie}
             />
         ))}
     </div>
