@@ -1,14 +1,17 @@
 import React, {Fragment} from 'react'
 import './styles/MovieDetails.css'
 import Iframe from 'react-iframe'
+import Loader from './Loader'
 
 class MovieDetails extends React.Component {
     
     constructor(props) {
         super(props)
         this.state = {
-            idMovie: undefined
+            loader: true,
+            display_video: 'animation-hidden' 
         }
+        this.offLoader = this.offLoader.bind(this)
     }
 
     intToTime(min) {
@@ -19,6 +22,13 @@ class MovieDetails extends React.Component {
         }
         return (`${min}min`)
     } 
+
+    offLoader() {
+        this.setState({
+            loader: false,
+            display_video: 'animation-visible'
+        })
+    }
 
     render() {
 
@@ -43,9 +53,13 @@ class MovieDetails extends React.Component {
                     <div className='video-container bg-black'>
                         <div className='video'>
                             <Iframe 
-                                className='video-content'
+                                onLoad={this.offLoader}
+                                className={`video-content ${this.state.display_video}`}
                                 url={`https://www.youtube.com/embed/${movie.yt_trailer_code}`}
                             ></Iframe>
+                            <Loader
+                                visible={this.state.loader}    
+                                />
                         </div>
                     </div>
                 

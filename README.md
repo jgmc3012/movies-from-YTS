@@ -1,5 +1,7 @@
 Es una SPA para ver la cartelera de peliculas de YTS.
 
+IMPORTANTE: ESte proyecto aun se encuentra en desarrollo, Aun no cuenta con un diseño para desktop por lo que se puede ver de una manera poco amigable en estos equipos.    
+
 En este proyecto:
 - Se consume la API de [YTS](https://yts.tl/)
 - Se utilizaron componentes creados con React.js
