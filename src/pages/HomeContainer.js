@@ -26,7 +26,6 @@ class HomeContainer extends React.Component {
 
     getListMovies(movieGenre, page = 1) {
         const URL = `${config.API_URL}${config.LIST_MOVIES_ENDPOINT}genre=${movieGenre}&page=${page}`
-        console.log(`${movieGenre} page: ${page}`)
         try {
             fetch(URL)
             .then( response => response.json() )
@@ -35,14 +34,20 @@ class HomeContainer extends React.Component {
                 if (movies[movieGenre] === undefined) {
                     movies[movieGenre] = response.data.movies
                 } else {
-                    movies[movieGenre].concat(response.data.movies) 
+                    const lastMoviesCurrent = movies[movieGenre][movies[movieGenre].length-1].id
+                    const lastMoviesNews = response.data.movies[response.data.movies.length-1].id
+                    if  ( lastMoviesCurrent !== lastMoviesNews ) {
+                        movies[movieGenre] = movies[movieGenre].concat(response.data.movies) 
+                    } else {
+                    }
+                    
                 }
                 this.setState({
                     movies: {
                         ...movies                           
                     }
                 })
-                console.log(movies[movieGenre])
+                console.log('Lista de Peliculas de',movieGenre,': ',movies[movieGenre])
             })
             .catch( error => console.log(`Error al traer la data de las peliculas de ${movieGenre}. Error:`, error))
             

@@ -1,55 +1,48 @@
 import React from 'react'
+import Loader from './Loader'
+import './styles/MovieCard.css'
 
 class MovieCard extends React.Component{
 
     constructor(props) {
         super(props)
         this.state = {
-            image:'collapse',
-            loader: true
+            loader:true,
+            display_img: 'animation-hidden'
         }
         this.loaderOff = this.loaderOff.bind(this)
-    } 
+    }
 
     loaderOff() {
         this.setState({
             loader: false,
-            image:''
+            display_img: 'animation-visible'
         })
     }
+
     render () {
         const { medium_cover_image, title } = this.props.movie
-        let loader
-        if  (this.state.loader) {
-            loader = (
-                <div className='spinner-border mx-auto text-white'></div>
-            )
-        } else {
-            loader = <React.Fragment/>
-        }
-
         return (
-            <div
-            onClick={ (e) => this.props.showMovie(e,this.props.movie) }
-            className='flex-fill'
-        >
-            {loader}
-        
-            <div className='d-flex flex-column'>
-                <div className={`p-2 ${this.state.showImage}`}>
-                    <img
+                <div className='movie-card' id={this.props.id}>
+                    <div className="movie-image">
+                        <img
+                        className={this.state.display_img}
                         src={medium_cover_image}
                         alt={title}
-                        className="img-thumbnail"
-                        onLoad={this.loaderOff}
-                    />
+                        onLoad = {this.loaderOff}
+                        />
+                        <Loader
+                            visible={this.state.loader}    
+                        />
+                    </div>
+
+                    <div className='movie-title text-white'>
+                        <h2>{title}</h2>
+                    </div>
                 </div>
 
-                <div className='p-3 text-white'>
-                    <strong className='text-white text-center'>{title}</strong>
-                </div>
-            </div>
-        </div>
+
+
         )
     }
 }

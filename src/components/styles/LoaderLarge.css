@@ -1,0 +1,49 @@
+.loading{
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin-top: 10%;
+}
+
+.loading-bar{
+  position: relative;
+  text-align: center;
+  padding-top: 30px;
+  width: 100%;
+  --color: #EEE;
+
+}
+.loading-bar span{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  border-radius: 50%;
+}
+
+.loading-bar span:nth-child(1){
+  background-color: var(--color);
+  animation: move 2s infinite cubic-bezier(0.4, 0.58, 0.6, 0.35)
+}
+.loading-bar span:nth-child(2){
+  background-color: var(--color);
+  animation: move 2s 150ms infinite cubic-bezier(0.4, 0.58, 0.6, 0.35)
+}
+.loading-bar span:nth-child(3){
+  background-color: var(--color);
+  animation: move 2s 300ms infinite cubic-bezier(0.4, 0.58, 0.6, 0.35)
+}
+.loading-bar span:nth-child(4){
+  background-color: var(--color);
+  animation: move 2s 450ms infinite cubic-bezier(0.4, 0.58, 0.6, 0.35)
+}
+
+
+@keyframes move{
+  0% {
+    left: 0%;
+  }
+  100% {
+    left: 100%;
+  }
+}

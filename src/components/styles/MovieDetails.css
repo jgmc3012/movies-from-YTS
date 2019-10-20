@@ -1,0 +1,33 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.video {
+  position: relative;
+  padding-bottom:56.25%;
+  background-image: radial-gradient(#555, black);
+}
+
+.video-content {
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  border-width: 0;
+  }
+
+.detalles {
+  margin-bottom: 1em;
+  margin-left: 0.5em;
+  background-image: black;
+}
+
+.description {
+  background-color: hsl(0,0%,80%);
+  border-radius: 2em;
+  padding: 1em;
+  margin: 0 1em 1em;
+}
+
+.datos{
+  background-image: linear-gradient(black 10%, #343a40);
+}

@@ -1,10 +1,11 @@
 import React, {Fragment} from 'react'
 import './SearchInput'
 import SearchInput from './SearchInput'
+import './styles/NavBar.css'
 
 const NavBar =  (props) => (
 <Fragment>
-    <nav className="navbar navbar-dark bg-dark">
+    <nav className="navbar navbar-dark">
         <h1 className="navbar-brand">Netflix from YTS</h1>
         <form className="form-inline" method="get">
             <SearchInput

@@ -3,7 +3,7 @@ import CarouselMovies from '../components/CarouselMovies'
 import NavBar from '../components/NavBar'
 
 const Home = ({moviesGenre, dataMovies, getMoreMovies}) => (
-    <React.Fragment>
+    <div className='bg-dark'>
         <NavBar/>
         {moviesGenre.map( (movieGenre, index) =>(
             <CarouselMovies
@@ -15,7 +15,7 @@ const Home = ({moviesGenre, dataMovies, getMoreMovies}) => (
             getMoreMovies = {getMoreMovies}
             />
         ))}
-    </React.Fragment>
+    </div>
 )
 
 export default Home

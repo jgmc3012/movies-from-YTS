@@ -1,0 +1,7 @@
+.movie-list {
+    --list-height: 38vh;
+    --card-width: 20vh; /* Es 2/3 del alto de la lista, no se como sacar cuenta en ccs. Por eso esta hardcodeado*/
+    height: var(--list-height);
+    overflow: scroll;
+    white-space: nowrap;
+  }
